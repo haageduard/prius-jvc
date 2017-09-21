@@ -1,5 +1,5 @@
-#ifndef INCLUDE_JVC_H_
-#define INCLUDE_JVC_H_
+#ifndef __INCLUDE_JVC_H__
+#define __INCLUDE_JVC_H__
 
 // JVC port definition
 #define JVC_PORT PORTB

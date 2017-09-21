@@ -1,5 +1,5 @@
-#ifndef INCLUDE_CONFIG_H_
-#define INCLUDE_CONFIG_H_
+#ifndef __INCLUDE_CONFIG_H__
+#define __INCLUDE_CONFIG_H__
 #define F_CPU 9600000UL
 
 // Enable software UART transmitter

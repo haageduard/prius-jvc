@@ -1,5 +1,5 @@
-#ifndef INCLUDE_UART_H_
-#define INCLUDE_UART_H_
+#ifndef __INCLUDE_UART_H__
+#define __INCLUDE_UART_H__
 
 // Software UART delay for 9600Kbps (104us for 9600kbps)
 #define SW_UART_DELAY 104

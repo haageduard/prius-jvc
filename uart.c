@@ -1,3 +1,18 @@
+/**
+*
+* File: uart.c
+* Project: JVC remote control for Prius NHW20
+* Author: Eduard Haag
+* Description: Software UART at 9600Kbps
+*
+* History:
+*
+* 05/04/2017 initial version
+* 14/04/2017 stable version
+* 21/09/2017 comment refactoring
+*
+**/
+
 #include "config.h"
 #include <avr/io.h>
 #include <avr/pgmspace.h>

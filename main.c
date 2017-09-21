@@ -1,15 +1,17 @@
-/****
+/**
+*
+* File: main.c
 * Project: JVC remote control for Prius NHW20
-* Used JVC RM-RK52 control codes
 * Author: Eduard Haag
 * Version: 0.2 (14/04/2017)
 *
 * History:
 *
 * 05/04/2017 initial version
-* 14/05/2017 stable version (version up to 0.2)
-
-****/
+* 14/04/2017 stable version
+* 21/09/2017 comment refactoring
+*
+**/
 
 #include "config.h"
 
@@ -37,8 +39,6 @@ void init_ports() {
 
 // initialize adc
 void adc_init() {
-  // AREF = AVcc
-  //ADMUX = (1 << REFS0);
   ADMUX = 0x02;
   ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
 }
@@ -68,7 +68,6 @@ uint16_t adc_read() {
   // of 'ch' between 0 and 7
   // ch &= 0b00000111; // AND operation with 7
   // ADMUX = (ADMUX & 0xF8) | ch; // clears the bottom 3 bits before ORing
-
 
   // start single conversion
   // write '1' to ADSC
@@ -183,7 +182,7 @@ void handle_button(uint8_t id) {
       jvc_none();
       break;
     }
-    default: {      
+    default: {
     }
   }
 }
@@ -244,16 +243,7 @@ int main(void) {
 
   while (1) {
 
-    // if (TIMSK0 & (1 << TOIE0)) {
-    //   TIMSK0 |= (0 << TOIE0);
-    //   int_enabled = true;
-    // } else {
-    //   int_enabled = false;
-    // }
     sw1_adc_val = adc_read();
-    // if (int_enabled) {
-    //   TIMSK0 |= (1 << TOIE0);
-    // }
 
      prev_btn_id = btn_id;
     if (sw1_adc_val > SW1_VOLUP - DIFF && sw1_adc_val < SW1_VOLUP + DIFF) {

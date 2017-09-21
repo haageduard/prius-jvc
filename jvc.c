@@ -1,19 +1,33 @@
+/**
+*
+* File: jvc.c
+* Project: JVC remote control for Prius NHW20
+* Author: Eduard Haag
+* Desription: JVC implementation (JVC RM-RK52 control codes)
+*
+* History:
+*
+* 05/04/2017 initial version
+* 14/04/2017 stable version
+* 21/09/2017 comment refactoring
+*
+*
+**/
+
 #include "config.h"
 #include <avr/io.h>
 #include <util/delay.h>
 #include "jvc.h"
 
-//uint8_t i = 0;
-
+// jvc init
 void jvc_init() {
-  //i = 0;
   jvc_preamble();
 }
 
+// jvc finalization
 void jvc_fin() {
   jvc_postamble();
   _delay_us(JVC_POSTAMBLE_LENGTH);
-  //i++;
 }
 
 // jvc set pin high
@@ -49,15 +63,15 @@ void jvc_preamble() {
 // jvc address
 void jvc_addr() {
 
-  jvc_pin_high();    // 1 Start Bit
-
-  jvc_pin_high();    //       (7 bit device code)
   jvc_pin_high();
-  jvc_pin_high();    // 7
+
+  jvc_pin_high();
+  jvc_pin_high();
+  jvc_pin_high();
   jvc_pin_low();
 
   jvc_pin_low();
-  jvc_pin_low();    //4
+  jvc_pin_low();
   jvc_pin_high();
 
 }
@@ -65,7 +79,7 @@ void jvc_addr() {
 // jvc postamble
 void jvc_postamble() {
 
-  jvc_pin_high(); // 3
+  jvc_pin_high();
   jvc_pin_high();
 
 }
@@ -76,11 +90,11 @@ void jvc_cmd_volume_up() {
 
   jvc_pin_low();
   jvc_pin_low();
-  jvc_pin_high();    // 4
+  jvc_pin_high();
   jvc_pin_low();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -101,11 +115,11 @@ void jvc_cmd_volume_down() {
 
   jvc_pin_high();
   jvc_pin_low();
-  jvc_pin_high();    // 5
+  jvc_pin_high();
   jvc_pin_low();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -126,11 +140,11 @@ void jvc_cmd_skip_back() {
 
   jvc_pin_high();
   jvc_pin_high();
-  jvc_pin_low();    // 3
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_pin_high();
-  jvc_pin_low();   // 1
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -151,11 +165,11 @@ void jvc_cmd_skip_fwd() {
 
   jvc_pin_low();
   jvc_pin_high();
-  jvc_pin_low();    // 2
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_pin_high();
-  jvc_pin_low();   // 1
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -176,11 +190,11 @@ void jvc_cmd_mute() {
 
   jvc_pin_low();
   jvc_pin_high();
-  jvc_pin_high();    // E (14)
+  jvc_pin_high();
   jvc_pin_high();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -201,11 +215,11 @@ void jvc_cmd_fwd_hold() {
 
   jvc_pin_low();
   jvc_pin_low();
-  jvc_pin_high();    // 4
+  jvc_pin_high();
   jvc_pin_low();
 
   jvc_pin_high();
-  jvc_pin_low();   // 1
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -226,11 +240,11 @@ void jvc_cmd_back_hold() {
 
   jvc_pin_high();
   jvc_pin_low();
-  jvc_pin_high();    // 5
+  jvc_pin_high();
   jvc_pin_low();
 
   jvc_pin_high();
-  jvc_pin_low();   // 1
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -251,11 +265,11 @@ void jvc_cmd_source() {
 
   jvc_pin_low();
   jvc_pin_low();
-  jvc_pin_low();    // 8
+  jvc_pin_low();
   jvc_pin_high();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -276,11 +290,11 @@ void jvc_cmd_sound() {
 
   jvc_pin_high();
   jvc_pin_low();
-  jvc_pin_high();    // D (13)
+  jvc_pin_high();
   jvc_pin_high();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();
@@ -302,11 +316,11 @@ void jvc_cmd_power_off() {
 
   jvc_pin_low();
   jvc_pin_low();
-  jvc_pin_low();    // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_pin_low();
-  jvc_pin_low();   // 0
+  jvc_pin_low();
   jvc_pin_low();
 
   jvc_fin();

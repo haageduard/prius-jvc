@@ -1,3 +1,6 @@
+#ifndef __INCLUDE_MAIN_H__
+#define __INCLUDE_MAIN_H__
+
 #include <stdbool.h>
 
 // Ports definition
@@ -43,3 +46,6 @@ uint8_t long_press_count = 0;
 
 uint8_t btn_id = BTN_NONE_ID;
 uint8_t prev_btn_id = BTN_NONE_ID;
+
+#endif
+
